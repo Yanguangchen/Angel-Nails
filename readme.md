@@ -10,7 +10,7 @@ Built with plain HTML, CSS, and minimal JavaScript.
 
 ## Assets
 - `styles.css` - Global styles and layout
-- `script.js` - Navigation toggle, hero chip interactions, gallery modal, mobile gallery toggle
+- `script.js` - Navigation toggle, hero chip interactions, mobile gallery toggle
 - `Assets/Samples/` - Gallery images (1.jpg–12.jpg)
 
 ## Key Links

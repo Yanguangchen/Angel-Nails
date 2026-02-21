@@ -45,44 +45,6 @@ if (heroButtons.length && heroFocus) {
   });
 }
 
-const modal = document.querySelector("#gallery-modal");
-const modalImage = document.querySelector("#modal-image");
-const galleryItems = document.querySelectorAll(".gallery-item");
-const modalClose = modal?.querySelector(".modal-close");
-
-const closeModal = () => {
-  if (!modal) return;
-  modal.classList.remove("open");
-  modal.setAttribute("aria-hidden", "true");
-  document.body.classList.remove("nav-open");
-};
-
-if (modal && modalImage) {
-  galleryItems.forEach((item) => {
-    item.addEventListener("click", () => {
-      const src = item.getAttribute("data-full") || "";
-      if (!src) return;
-      modalImage.src = src;
-      modal.classList.add("open");
-      modal.setAttribute("aria-hidden", "false");
-      document.body.classList.add("nav-open");
-    });
-  });
-
-  modalClose?.addEventListener("click", closeModal);
-  modal.addEventListener("click", (event) => {
-    if (event.target instanceof HTMLElement && event.target.dataset.close) {
-      closeModal();
-    }
-  });
-
-  window.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      closeModal();
-    }
-  });
-}
-
 const galleryToggle = document.querySelector("#gallery-toggle");
 const galleryGrid = document.querySelector("#gallery-grid");
 
