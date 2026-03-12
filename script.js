@@ -56,37 +56,3 @@ if (galleryToggle && galleryGrid) {
   });
 }
 
-const promoModal = document.querySelector("#promo-modal");
-const promoModalClose = promoModal?.querySelector(".promo-modal-close");
-
-const closePromoModal = () => {
-  if (!promoModal) return;
-  promoModal.classList.remove("open");
-  promoModal.setAttribute("aria-hidden", "true");
-  document.body.classList.remove("nav-open");
-};
-
-const openPromoModal = () => {
-  if (!promoModal) return;
-  promoModal.classList.add("open");
-  promoModal.setAttribute("aria-hidden", "false");
-  document.body.classList.add("nav-open");
-};
-
-if (promoModal) {
-  openPromoModal();
-
-  promoModalClose?.addEventListener("click", closePromoModal);
-  promoModal.addEventListener("click", (event) => {
-    if (event.target instanceof HTMLElement && event.target.dataset.close) {
-      closePromoModal();
-    }
-  });
-
-  window.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      closePromoModal();
-    }
-  });
-}
-
