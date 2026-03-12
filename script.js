@@ -74,11 +74,7 @@ const openPromoModal = () => {
 };
 
 if (promoModal) {
-  if (document.readyState === "complete") {
-    openPromoModal();
-  } else {
-    window.addEventListener("load", openPromoModal, { once: true });
-  }
+  openPromoModal();
 
   promoModalClose?.addEventListener("click", closePromoModal);
   promoModal.addEventListener("click", (event) => {
