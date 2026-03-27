@@ -577,6 +577,24 @@ h2 {
   font-size: 0.9rem;
 }
 
+.footer-credit {
+  text-align: center;
+  color: var(--muted);
+  margin-top: 8px;
+  font-size: 0.78rem;
+  opacity: 0.9;
+}
+
+.footer-credit a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.footer-credit a:hover {
+  color: var(--text);
+}
+
 .table {
   background: var(--white);
   border-radius: 18px;
