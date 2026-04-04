@@ -45,10 +45,10 @@ if (heroButtons.length && heroFocus) {
   });
 }
 
-const modal = document.querySelector("#gallery-modal");
-const modalImage = document.querySelector("#modal-image");
+const modal = document.querySelector("#gallery-overlay");
+const modalImage = document.querySelector("#gallery-overlay-image");
 const galleryItems = document.querySelectorAll(".gallery-item");
-const modalClose = modal?.querySelector(".site-modal-close");
+const modalClose = modal?.querySelector(".site-overlay-close");
 
 const closeModal = () => {
   if (!modal) return;
@@ -83,8 +83,8 @@ if (modal && modalImage) {
   });
 }
 
-const cnyModal = document.querySelector("#cny-modal");
-const cnyClose = cnyModal?.querySelector(".site-modal-close");
+const cnyModal = document.querySelector("#cny-overlay");
+const cnyClose = cnyModal?.querySelector(".site-overlay-close");
 
 const closeCnyModal = () => {
   if (!cnyModal) return;
