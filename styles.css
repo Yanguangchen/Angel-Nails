@@ -686,7 +686,8 @@ h2 {
   transform: translateY(-1px);
 }
 
-.modal {
+/* Prefixed site-modal-* to avoid clashes with third-party booking overlays/iframes */
+.site-modal {
   position: fixed;
   inset: 0;
   display: none;
@@ -695,17 +696,17 @@ h2 {
   z-index: 1000;
 }
 
-.modal.open {
+.site-modal.open {
   display: flex;
 }
 
-.modal-backdrop {
+.site-modal-backdrop {
   position: absolute;
   inset: 0;
   background: rgba(20, 16, 18, 0.6);
 }
 
-.modal-content {
+.site-modal-content {
   position: relative;
   background: #fff;
   padding: 16px;
@@ -718,7 +719,7 @@ h2 {
   gap: 10px;
 }
 
-.modal-content img {
+.site-modal-content img {
   width: 100%;
   height: auto;
   max-height: 70vh;
@@ -726,7 +727,7 @@ h2 {
   border-radius: 12px;
 }
 
-.modal-close {
+.site-modal-close {
   justify-self: flex-end;
   border: none;
   background: #f8e8ef;

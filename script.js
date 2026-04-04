@@ -48,7 +48,7 @@ if (heroButtons.length && heroFocus) {
 const modal = document.querySelector("#gallery-modal");
 const modalImage = document.querySelector("#modal-image");
 const galleryItems = document.querySelectorAll(".gallery-item");
-const modalClose = modal?.querySelector(".modal-close");
+const modalClose = modal?.querySelector(".site-modal-close");
 
 const closeModal = () => {
   if (!modal) return;
@@ -84,7 +84,7 @@ if (modal && modalImage) {
 }
 
 const cnyModal = document.querySelector("#cny-modal");
-const cnyClose = cnyModal?.querySelector(".modal-close");
+const cnyClose = cnyModal?.querySelector(".site-modal-close");
 
 const closeCnyModal = () => {
   if (!cnyModal) return;
