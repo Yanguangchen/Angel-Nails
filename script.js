@@ -83,41 +83,6 @@ if (modal && modalImage) {
   });
 }
 
-const cnyModal = document.querySelector("#cny-modal");
-const cnyClose = cnyModal?.querySelector(".modal-close");
-
-const closeCnyModal = () => {
-  if (!cnyModal) return;
-  cnyModal.classList.remove("open");
-  cnyModal.setAttribute("aria-hidden", "true");
-  document.body.classList.remove("nav-open");
-};
-
-const shouldShowCnyModal = () => {
-  const now = new Date();
-  const cutoff = new Date(now.getFullYear(), 11, 18, 23, 59, 59);
-  return now <= cutoff;
-};
-
-if (cnyModal && shouldShowCnyModal()) {
-  cnyModal.classList.add("open");
-  cnyModal.setAttribute("aria-hidden", "false");
-  document.body.classList.add("nav-open");
-
-  cnyClose?.addEventListener("click", closeCnyModal);
-  cnyModal.addEventListener("click", (event) => {
-    if (event.target instanceof HTMLElement && event.target.dataset.close) {
-      closeCnyModal();
-    }
-  });
-
-  window.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      closeCnyModal();
-    }
-  });
-}
-
 const galleryToggle = document.querySelector("#gallery-toggle");
 const galleryGrid = document.querySelector("#gallery-grid");
 
