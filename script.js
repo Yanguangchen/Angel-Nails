@@ -94,3 +94,49 @@ if (galleryToggle && galleryGrid) {
   });
 }
 
+const emailPopup = document.querySelector("#email-popup");
+const emailForm = document.querySelector("#email-popup-form");
+
+if (emailPopup) {
+  const POPUP_KEY = "angel_popup_dismissed";
+  const wasDismissed = localStorage.getItem(POPUP_KEY);
+
+  const openPopup = () => {
+    emailPopup.classList.add("open");
+    emailPopup.setAttribute("aria-hidden", "false");
+    document.body.classList.add("nav-open");
+  };
+
+  const closePopup = () => {
+    emailPopup.classList.remove("open");
+    emailPopup.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("nav-open");
+    localStorage.setItem(POPUP_KEY, "1");
+  };
+
+  if (!wasDismissed) {
+    setTimeout(openPopup, 8000);
+  }
+
+  emailPopup.querySelector(".email-popup-close")?.addEventListener("click", closePopup);
+  emailPopup.querySelector(".email-popup-backdrop")?.addEventListener("click", closePopup);
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && emailPopup.classList.contains("open")) {
+      closePopup();
+    }
+  });
+
+  if (emailForm) {
+    emailForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const card = emailPopup.querySelector(".email-popup-card");
+      if (card) {
+        card.innerHTML =
+          '<p class="email-popup-success">You\'re in! Check your inbox for your 10% welcome code.</p>';
+        setTimeout(closePopup, 3000);
+      }
+    });
+  }
+}
+
