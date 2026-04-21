@@ -923,108 +923,132 @@ body.nav-open {
   color: var(--muted);
 }
 
-/* Email capture pop-up */
-.email-popup {
-  position: fixed;
-  inset: 0;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 2000;
+
+/* About page */
+.about-page-grid {
+  max-width: 780px;
 }
 
-.email-popup.open {
-  display: flex;
+.about-page-block {
+  margin-bottom: 48px;
 }
 
-.email-popup-backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(20, 16, 18, 0.55);
-  backdrop-filter: blur(4px);
+.about-page-block p {
+  color: var(--muted);
+  margin: 0 0 14px;
+  line-height: 1.7;
 }
 
-.email-popup-card {
-  position: relative;
-  background: var(--white);
-  border-radius: 22px;
-  padding: 36px 32px;
-  box-shadow: 0 28px 64px rgba(0, 0, 0, 0.2);
-  width: min(90vw, 440px);
-  z-index: 1;
-  text-align: center;
+.edge-grid {
+  display: grid;
+  gap: 18px;
+  margin-top: 20px;
 }
 
-.email-popup-card .eyebrow {
-  color: #c47a8e;
-  margin-bottom: 6px;
+.edge-card {
+  background: rgba(247, 198, 211, 0.18);
+  border: 1px solid rgba(247, 198, 211, 0.35);
+  border-radius: 16px;
+  padding: 22px 24px;
 }
 
-.email-popup-card h2 {
-  font-size: 1.5rem;
-  margin-bottom: 12px;
+.edge-card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 8px;
 }
 
-.email-popup-card > p {
+.edge-card p {
+  color: var(--muted);
+  margin: 0;
   font-size: 0.92rem;
-  color: var(--muted);
-  line-height: 1.55;
-  margin: 0 0 20px;
+  line-height: 1.6;
 }
 
-.email-popup-close {
-  position: absolute;
-  top: 12px;
-  right: 14px;
-  border: none;
-  background: transparent;
-  font-size: 1.5rem;
-  color: var(--muted);
-  cursor: pointer;
-  line-height: 1;
-  padding: 4px;
+@media (min-width: 760px) {
+  .edge-grid {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
-.email-popup-close:hover {
-  color: var(--text);
+/* FAQ page */
+.faq-container {
+  max-width: 780px;
 }
 
-.email-popup-form {
+.faq-container h2 {
+  margin-top: 36px;
+  margin-bottom: 18px;
+}
+
+.faq-container h2:first-child {
+  margin-top: 0;
+}
+
+.faq-item {
+  border: 1px solid #f2e5ea;
+  border-radius: 14px;
+  margin-bottom: 12px;
+  background: var(--white);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+
+.faq-item[open] {
+  box-shadow: var(--shadow);
+}
+
+.faq-question {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.email-popup-form input[type="email"] {
-  width: 100%;
-  padding: 13px 16px;
-  border: 1px solid #f0d6df;
-  border-radius: 999px;
-  font-size: 0.95rem;
-  font-family: inherit;
-  outline: none;
-  transition: border-color 0.2s ease;
-}
-
-.email-popup-form input[type="email"]:focus {
-  border-color: var(--pink);
-}
-
-.email-popup-form .btn {
-  width: 100%;
-}
-
-.email-popup-fine {
-  font-size: 0.75rem;
-  color: var(--muted);
-  margin-top: 10px;
-  opacity: 0.8;
-}
-
-.email-popup-success {
-  padding: 18px 0;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
   font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  line-height: 1.4;
+}
+
+.faq-question::-webkit-details-marker {
+  display: none;
+}
+
+.faq-question::after {
+  content: "+";
+  flex-shrink: 0;
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--muted);
+  margin-left: 16px;
+  transition: transform 0.2s ease;
+}
+
+.faq-item[open] .faq-question::after {
+  content: "\2212";
+}
+
+.faq-answer {
+  padding: 0 22px 20px;
+}
+
+.faq-answer p {
+  color: var(--muted);
+  margin: 0 0 10px;
+  line-height: 1.65;
+  font-size: 0.94rem;
+}
+
+.faq-answer p:last-child {
+  margin-bottom: 0;
+}
+
+.faq-answer a {
   color: var(--text);
-  font-size: 1rem;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.faq-answer a:hover {
+  color: var(--muted);
 }
 
