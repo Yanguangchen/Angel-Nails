@@ -70,6 +70,16 @@ body {
     white-space: normal;
     text-align: center;
   }
+
+  a.btn.primary[href*="wa.me"] {
+    animation: none;
+    box-shadow: 0 10px 18px rgba(247, 198, 211, 0.45);
+  }
+
+  a.btn.primary[href*="wa.me"]::before {
+    animation: none;
+    opacity: 0;
+  }
 }
 
 img {
@@ -518,6 +528,62 @@ h2 {
   background: var(--pink);
   color: var(--text);
   box-shadow: 0 10px 18px rgba(247, 198, 211, 0.45);
+}
+
+/* WhatsApp primary CTAs — soft pulse + looping shimmer sweep */
+a.btn.primary[href*="wa.me"] {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  animation: whatsapp-cta-pulse 2.35s ease-in-out infinite;
+}
+
+a.btn.primary[href*="wa.me"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+  background: linear-gradient(
+    105deg,
+    transparent 32%,
+    rgba(255, 255, 255, 0.65) 50%,
+    transparent 68%
+  );
+  background-size: 260% 100%;
+  mix-blend-mode: soft-light;
+  opacity: 0.9;
+  animation: whatsapp-cta-shimmer 2.85s ease-in-out infinite;
+}
+
+@keyframes whatsapp-cta-shimmer {
+  0%,
+  100% {
+    background-position: 130% 0;
+  }
+  50% {
+    background-position: -130% 0;
+  }
+}
+
+@keyframes whatsapp-cta-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 10px 18px rgba(247, 198, 211, 0.45),
+      0 0 0 0 rgba(247, 198, 211, 0.35);
+  }
+  45% {
+    box-shadow:
+      0 14px 30px rgba(247, 198, 211, 0.72),
+      0 0 0 10px rgba(247, 198, 211, 0.12);
+  }
+  70% {
+    box-shadow:
+      0 12px 22px rgba(247, 198, 211, 0.55),
+      0 0 0 18px rgba(247, 198, 211, 0);
+  }
 }
 
 .btn.secondary {
