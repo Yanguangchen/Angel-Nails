@@ -36,6 +36,15 @@ body {
   .fade-in {
     transition: none;
   }
+
+  .text-shimmer-loop {
+    animation: none;
+    background: none;
+    color: inherit;
+    -webkit-text-fill-color: currentColor;
+    background-clip: unset;
+    -webkit-background-clip: unset;
+  }
 }
 
 img {
@@ -298,6 +307,37 @@ h3 {
 
 h1 {
   font-size: clamp(2.4rem, 5vw, 3.2rem);
+}
+
+/* Reusable looping headline emphasis (e.g. About page) */
+.text-shimmer-loop {
+  display: inline-block;
+  background: linear-gradient(
+    95deg,
+    var(--text) 0%,
+    var(--text) 38%,
+    #b85a72 48%,
+    #e8b8c8 52%,
+    #b85a72 56%,
+    var(--text) 66%,
+    var(--text) 100%
+  );
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: text-shimmer-loop 3.2s ease-in-out infinite;
+}
+
+@keyframes text-shimmer-loop {
+  0%,
+  100% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 0% 50%;
+  }
 }
 
 h2 {
