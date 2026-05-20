@@ -2,28 +2,39 @@ const navToggle = document.querySelector(".nav-toggle");
 const siteNav = document.querySelector(".site-nav");
 const navClose = document.querySelector(".nav-close");
 
+const setMobileNavOpen = (open) => {
+  if (!siteNav || !navToggle) return;
+  siteNav.classList.toggle("open", open);
+  navToggle.classList.toggle("active", open);
+  document.body.classList.toggle("nav-open", open);
+  navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+};
+
+if (siteNav) {
+  siteNav.addEventListener("click", (event) => {
+    if (event.target === siteNav) {
+      setMobileNavOpen(false);
+    }
+  });
+}
+
 if (navToggle && siteNav) {
+  navToggle.setAttribute("aria-expanded", "false");
   navToggle.addEventListener("click", () => {
-    siteNav.classList.toggle("open");
-    navToggle.classList.toggle("active");
-    document.body.classList.toggle("nav-open");
+    setMobileNavOpen(!siteNav.classList.contains("open"));
   });
 }
 
 if (navClose && siteNav && navToggle) {
   navClose.addEventListener("click", () => {
-    siteNav.classList.remove("open");
-    navToggle.classList.remove("active");
-    document.body.classList.remove("nav-open");
+    setMobileNavOpen(false);
   });
 }
 
 const navLinks = document.querySelectorAll(".site-nav a");
 navLinks.forEach((link) => {
   link.addEventListener("click", () => {
-    siteNav.classList.remove("open");
-    navToggle?.classList.remove("active");
-    document.body.classList.remove("nav-open");
+    setMobileNavOpen(false);
   });
 });
 
@@ -75,13 +86,18 @@ if (modal && modalImage) {
       closeModal();
     }
   });
-
-  window.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      closeModal();
-    }
-  });
 }
+
+window.addEventListener("keydown", (event) => {
+  if (event.key !== "Escape") return;
+  if (modal?.classList?.contains("open")) {
+    closeModal();
+    return;
+  }
+  if (siteNav?.classList.contains("open")) {
+    setMobileNavOpen(false);
+  }
+});
 
 const galleryToggle = document.querySelector("#gallery-toggle");
 const galleryGrid = document.querySelector("#gallery-grid");
@@ -93,4 +109,3 @@ if (galleryToggle && galleryGrid) {
     galleryToggle.setAttribute("aria-expanded", String(!isCollapsed));
   });
 }
-
