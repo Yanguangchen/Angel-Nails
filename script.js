@@ -35,6 +35,38 @@ window.addEventListener("load", () => {
   document.body.classList.add("is-loaded");
 });
 
+const initShimmerText = () => {
+  const targets = document.querySelectorAll(".text-shimmer-loop");
+  targets.forEach((el) => {
+    if (el.dataset.shimmerInit === "true") return;
+    const original = (el.textContent || "").replace(/\s+/g, " ").trim();
+    if (!original) return;
+    el.setAttribute("aria-label", original);
+    el.textContent = "";
+    const chars = Array.from(original);
+    chars.forEach((ch, idx) => {
+      const span = document.createElement("span");
+      span.className = "shimmer-char";
+      span.setAttribute("aria-hidden", "true");
+      span.style.setProperty("--i", String(idx));
+      if (ch === " ") {
+        span.classList.add("shimmer-space");
+        span.textContent = "\u00A0";
+      } else {
+        span.textContent = ch;
+      }
+      el.appendChild(span);
+    });
+    el.dataset.shimmerInit = "true";
+  });
+};
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initShimmerText);
+} else {
+  initShimmerText();
+}
+
 const heroButtons = document.querySelectorAll(".hero-chip");
 const heroFocus = document.querySelector("#hero-focus");
 
