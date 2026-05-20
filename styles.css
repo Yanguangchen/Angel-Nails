@@ -5,6 +5,7 @@
   --muted: #6c6468;
   --white: #ffffff;
   --shadow: 0 16px 40px rgba(47, 42, 46, 0.08);
+  --font-sans: "Outfit", system-ui, -apple-system, sans-serif;
 }
 
 *,
@@ -15,7 +16,7 @@
 
 body {
   margin: 0;
-  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans);
   color: var(--text);
   background: var(--white);
   line-height: 1.6;
@@ -71,7 +72,7 @@ a {
 }
 
 .logo {
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-sans);
   font-size: 1.3rem;
   font-weight: 600;
 }
@@ -292,7 +293,7 @@ a {
 h1,
 h2,
 h3 {
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-sans);
   margin: 0 0 12px;
 }
 
@@ -913,7 +914,7 @@ body.nav-open {
 }
 
 .about-stat strong {
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-sans);
   font-size: 1.6rem;
   color: var(--text);
 }
