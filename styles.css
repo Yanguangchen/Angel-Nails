@@ -15,7 +15,7 @@
 
 body {
   margin: 0;
-  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-family: "Outfit", system-ui, -apple-system, sans-serif;
   color: var(--text);
   background: var(--white);
   line-height: 1.6;
@@ -37,13 +37,22 @@ body {
     transition: none;
   }
 
-  .text-shimmer-loop {
+  .text-shimmer-loop,
+  .text-shimmer-loop::before {
     animation: none;
+  }
+
+  .text-shimmer-loop {
     background: none;
     color: inherit;
     -webkit-text-fill-color: currentColor;
     background-clip: unset;
     -webkit-background-clip: unset;
+    text-shadow: none;
+  }
+
+  .text-shimmer-loop::before {
+    display: none;
   }
 
   .services-marquee-track {
@@ -171,13 +180,18 @@ a {
 }
 
 .logo {
-  font-family: "Playfair Display", serif;
+  font-family: "Outfit", system-ui, -apple-system, sans-serif;
   font-size: 1.3rem;
   font-weight: 600;
+  letter-spacing: -0.005em;
 }
 
 .logo.text-shimmer-loop {
-  animation-duration: 4s;
+  animation-duration: 6.8s;
+}
+
+.logo.text-shimmer-loop::before {
+  animation-duration: 6.8s;
 }
 
 .logo.text-shimmer-loop:focus-visible {
@@ -391,43 +405,115 @@ a {
 
 h1,
 h2,
-h3 {
-  font-family: "Playfair Display", serif;
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Outfit", system-ui, -apple-system, sans-serif;
   margin: 0 0 12px;
+  letter-spacing: -0.015em;
 }
 
 h1 {
   font-size: clamp(2.4rem, 5vw, 3.2rem);
+  font-weight: 600;
+  line-height: 1.15;
 }
 
-/* Looping gradient text (navbar logo, headline emphasis, etc.) */
+h2 {
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+h3 {
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* Looping gradient text — humanist "light catching" sweep.
+ * Two layered loops at different periods so the highlight never
+ * feels mechanical: a one-direction gradient glide through the
+ * letterforms paired with a slower breathing glow underneath.
+ */
 .text-shimmer-loop {
+  position: relative;
   display: inline-block;
-  background: linear-gradient(
-    95deg,
+  background-image: linear-gradient(
+    102deg,
     var(--text) 0%,
-    var(--text) 38%,
-    #b85a72 48%,
-    #e8b8c8 52%,
-    #b85a72 56%,
-    var(--text) 66%,
+    var(--text) 32%,
+    #c46a83 42%,
+    #f1cdd8 50%,
+    #b85a72 58%,
+    var(--text) 70%,
     var(--text) 100%
   );
-  background-size: 220% 100%;
+  background-repeat: no-repeat;
+  background-size: 300% 100%;
+  background-position: 130% 50%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
-  animation: text-shimmer-loop 3.2s ease-in-out infinite;
+  animation: text-shimmer-loop 5.6s cubic-bezier(0.32, 0.08, 0.24, 1) infinite;
+  will-change: background-position;
+}
+
+.text-shimmer-loop::before {
+  content: "";
+  position: absolute;
+  inset: -0.08em -0.18em;
+  pointer-events: none;
+  z-index: -1;
+  border-radius: 999px;
+  background: radial-gradient(
+    60% 70% at 50% 50%,
+    rgba(247, 198, 211, 0.32) 0%,
+    rgba(247, 198, 211, 0) 70%
+  );
+  filter: blur(10px);
+  opacity: 0;
+  animation: text-shimmer-glow 8.3s ease-in-out infinite;
 }
 
 @keyframes text-shimmer-loop {
+  0% {
+    background-position: 135% 50%;
+  }
+  22% {
+    background-position: 96% 50%;
+  }
+  48% {
+    background-position: 50% 50%;
+  }
+  68% {
+    background-position: 12% 50%;
+  }
+  86% {
+    background-position: -22% 50%;
+  }
+  100% {
+    background-position: -36% 50%;
+  }
+}
+
+@keyframes text-shimmer-glow {
   0%,
   100% {
-    background-position: 100% 50%;
+    opacity: 0;
+    transform: scale(0.96);
   }
-  50% {
-    background-position: 0% 50%;
+  38% {
+    opacity: 0.55;
+    transform: scale(1.02);
+  }
+  62% {
+    opacity: 0.85;
+    transform: scale(1.05);
+  }
+  82% {
+    opacity: 0.4;
+    transform: scale(1);
   }
 }
 
@@ -750,31 +836,163 @@ a.btn.primary[href*="wa.me"]::before {
 }
 
 .site-footer {
-  padding: 36px 0 70px;
-  background: #fdf7f9;
-  border-top: 1px solid rgba(232, 214, 220, 0.6);
+  position: relative;
+  padding: 56px 0 88px;
+  margin-top: 40px;
+  background:
+    radial-gradient(
+      120% 80% at 12% 0%,
+      rgba(247, 198, 211, 0.38) 0%,
+      rgba(247, 198, 211, 0) 55%
+    ),
+    radial-gradient(
+      120% 80% at 92% 100%,
+      rgba(246, 239, 232, 0.6) 0%,
+      rgba(246, 239, 232, 0) 60%
+    ),
+    linear-gradient(
+      165deg,
+      rgba(255, 255, 255, 0.82) 0%,
+      rgba(255, 252, 253, 0.7) 45%,
+      rgba(252, 228, 235, 0.65) 100%
+    );
+  backdrop-filter: blur(22px) saturate(1.4);
+  -webkit-backdrop-filter: blur(22px) saturate(1.4);
+  border-top: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    0 -8px 28px rgba(212, 178, 189, 0.18);
+  overflow: hidden;
+}
+
+.site-footer::before,
+.site-footer::after {
+  content: "";
+  position: absolute;
+  border-radius: 999px;
+  pointer-events: none;
+  filter: blur(40px);
+  opacity: 0.55;
+}
+
+.site-footer::before {
+  width: 260px;
+  height: 260px;
+  top: -90px;
+  left: -60px;
+  background: radial-gradient(circle, rgba(247, 198, 211, 0.55), rgba(247, 198, 211, 0));
+}
+
+.site-footer::after {
+  width: 320px;
+  height: 320px;
+  bottom: -140px;
+  right: -80px;
+  background: radial-gradient(circle, rgba(246, 239, 232, 0.85), rgba(246, 239, 232, 0));
+}
+
+.site-footer .container {
+  position: relative;
+  z-index: 1;
 }
 
 .footer-grid {
   display: grid;
-  gap: 20px;
-  align-items: start;
+  gap: 18px;
+  align-items: stretch;
+}
+
+.footer-grid > div {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 20px;
+  padding: 22px 24px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 10px 28px rgba(212, 178, 189, 0.14);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.footer-grid > div:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.62);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 14px 34px rgba(212, 178, 189, 0.22);
+}
+
+.footer-grid h3 {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.footer-grid p {
+  margin: 0 0 6px;
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.footer-grid p:last-child {
+  margin-bottom: 0;
 }
 
 .footer-links {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
+}
+
+.footer-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  color: var(--text);
+  font-weight: 500;
+  font-size: 0.92rem;
+  width: max-content;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, color 0.2s ease;
+}
+
+.footer-links a::after {
+  content: "→";
+  opacity: 0.55;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.footer-links a:hover {
+  background: rgba(247, 198, 211, 0.55);
+  border-color: rgba(230, 160, 180, 0.7);
+  color: var(--text);
+  transform: translateY(-1px);
+}
+
+.footer-links a:hover::after {
+  opacity: 1;
+  transform: translateX(3px);
 }
 
 .footer-note {
+  position: relative;
+  z-index: 1;
   text-align: center;
   color: var(--muted);
-  margin-top: 24px;
+  margin-top: 32px;
   font-size: 0.9rem;
 }
 
 .footer-credit {
+  position: relative;
+  z-index: 1;
   text-align: center;
   color: var(--muted);
   margin-top: 8px;
@@ -1191,8 +1409,10 @@ body.nav-open {
 }
 
 .about-stat strong {
-  font-family: "Playfair Display", serif;
+  font-family: "Outfit", system-ui, -apple-system, sans-serif;
   font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
   color: var(--text);
 }
 
