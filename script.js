@@ -1,6 +1,5 @@
 const navToggle = document.querySelector(".nav-toggle");
 const siteNav = document.querySelector(".site-nav");
-const navClose = document.querySelector(".nav-close");
 
 const setMobileNavOpen = (open) => {
   if (!siteNav || !navToggle) return;
@@ -22,12 +21,6 @@ if (navToggle && siteNav) {
   navToggle.setAttribute("aria-expanded", "false");
   navToggle.addEventListener("click", () => {
     setMobileNavOpen(!siteNav.classList.contains("open"));
-  });
-}
-
-if (navClose && siteNav && navToggle) {
-  navClose.addEventListener("click", () => {
-    setMobileNavOpen(false);
   });
 }
 
