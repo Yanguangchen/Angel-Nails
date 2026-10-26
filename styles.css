@@ -548,6 +548,11 @@ h2 {
   margin-top: 20px;
 }
 
+.button-row.button-row--center {
+  justify-content: center;
+  margin-top: 28px;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
