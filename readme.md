@@ -11,7 +11,7 @@ Built with plain HTML, CSS, and minimal JavaScript.
 ## Assets
 - `styles.css` - Global styles and layout
 - `script.js` - Navigation toggle, hero chip interactions, gallery modal, mobile gallery toggle
-- `Assets/Samples/` - Gallery images (1.jpg–12.jpg)
+- `Assets/Samples/` - Gallery images (1.jpg–18.jpg)
 
 ## Key Links
 - WhatsApp: `https://wa.me/6596363537`
